@@ -1,4 +1,5 @@
-import domain.Word;
+import com.thoughtworks.xstream.XStream;
+import pl.ssobocik.domain.Word;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
  * Date: 15.01.12
  * Time: 09:36
  */
-public class WordLoader {
+public class WordsController {
 
 
     public static List<Word> wczytajSlowka() {
@@ -23,5 +24,14 @@ public class WordLoader {
             wordsList.add(word);
         }
         return wordsList;
+    }
+
+    public static void saveWords(List<Word> words) {
+        if (words != null) {
+            XStream xStream = new XStream();
+            String xml = xStream.toXML(words);
+            System.out.println(xml);
+
+        }
     }
 }

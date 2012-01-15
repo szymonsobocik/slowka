@@ -1,4 +1,4 @@
-import domain.Word;
+import pl.ssobocik.domain.Word;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -42,5 +42,9 @@ public class WordsTableModel extends AbstractTableModel{
 
     public void setWords(List<Word> words) {
         this.words = words;
+    }
+
+    public List<Word> getWords() {
+        return words;
     }
 }

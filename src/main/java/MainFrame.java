@@ -1,7 +1,9 @@
-import domain.Word;
+import pl.ssobocik.domain.Word;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /*
  * Created by JFormDesigner on Sun Jan 15 09:22:06 CET 2012
  */
@@ -20,7 +22,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         initComponents();
-        java.util.List<Word> words = WordLoader.wczytajSlowka();
+        java.util.List<Word> words = WordsController.wczytajSlowka();
         ((WordsTableModel) table1.getModel()).setWords(words);
     }
 
@@ -55,7 +57,11 @@ public class MainFrame extends JFrame {
 
                 //---- menuItemExport ----
                 menuItemExport.setText("Export Words");
-                menuItemExport.setEnabled(false);
+                menuItemExport.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        WordsController.saveWords(((WordsTableModel) table1.getModel()).getWords());
+                    }
+                });
                 menu1.add(menuItemExport);
             }
             menuBar1.add(menu1);
