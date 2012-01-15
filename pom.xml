@@ -7,6 +7,12 @@
     <groupId>pl.ssobocik</groupId>
     <artifactId>slowka</artifactId>
     <version>1.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+    </dependencies>
 
-    
 </project>

@@ -1,5 +1,7 @@
-import java.awt.*;
+import domain.Word;
+
 import javax.swing.*;
+import java.awt.*;
 /*
  * Created by JFormDesigner on Sun Jan 15 09:22:06 CET 2012
  */
@@ -10,20 +12,32 @@ import javax.swing.*;
  * @author User #2
  */
 public class MainFrame extends JFrame {
+
+    public static void main(String[] args) {
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
+    }
+
     public MainFrame() {
         initComponents();
+        java.util.List<Word> words = WordLoader.wczytajSlowka();
+        ((WordsTableModel) table1.getModel()).setWords(words);
+    }
+
+    private void tableCreationAndConfiguration() {
+        table1 = new JTable(new WordsTableModel());
     }
 
     private void initComponents() {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         menuBar1 = new JMenuBar();
         menu1 = new JMenu();
         menuItemImport = new JMenuItem();
         menuItemExport = new JMenuItem();
         scrollPane1 = new JScrollPane();
-        table1 = new JTable();
+        tableCreationAndConfiguration();
 
         //======== this ========
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -55,15 +69,12 @@ public class MainFrame extends JFrame {
         contentPane.add(scrollPane1, BorderLayout.CENTER);
         pack();
         setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JMenuBar menuBar1;
     private JMenu menu1;
     private JMenuItem menuItemImport;
     private JMenuItem menuItemExport;
     private JScrollPane scrollPane1;
     private JTable table1;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
