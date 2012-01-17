@@ -20,19 +20,15 @@ public class MainFrame extends JFrame {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                MainFrame mainFrame = null;
-                try {
-                    mainFrame = new MainFrame();
+//                MainFrame mainFrame = null;
+                    MainFrame mainFrame = new MainFrame();
                     mainFrame.setVisible(true);
-                } catch (IOException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
             }
         });
 
     }
 
-    public MainFrame() throws IOException {
+    public MainFrame() {
         initComponents();
         java.util.List<Word> words = WordsController.loadWords();
         ((WordsTableModel) table1.getModel()).setWords(words);

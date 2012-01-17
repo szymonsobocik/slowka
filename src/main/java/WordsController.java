@@ -2,7 +2,6 @@ import com.thoughtworks.xstream.XStream;
 import pl.ssobocik.domain.Word;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,17 +14,23 @@ public class WordsController {
 
     private static String wordsFilePath = "slowka.xml";
 
-    public static List<Word> loadWords() throws IOException {
+    public static List<Word> loadWords() {
         File file = new File(wordsFilePath);
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-        String xml = "";
-        String tempXML;
-        while ((tempXML = bufferedReader.readLine()) != null){
-            xml += tempXML;
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(file));
+            String xml = "";
+            String tempXML;
+            while ((tempXML = bufferedReader.readLine()) != null) {
+                xml += tempXML;
+            }
+            XStream xStream = createXStream();
+            List<Word> words = (List<Word>) xStream.fromXML(file);
+            return words;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-        XStream xStream = createXStream();
-        List<Word> words = (List<Word>) xStream.fromXML(file);
-        return words;
 
         /*ArrayList<Word> wordsList = new ArrayList<Word>();
         for (int i = 0; i < 5; i++) {
