@@ -23,7 +23,7 @@ public class WordsController {
         while ((tempXML = bufferedReader.readLine()) != null){
             xml += tempXML;
         }
-        XStream xStream = new XStream();
+        XStream xStream = createXStream();
         List<Word> words = (List<Word>) xStream.fromXML(file);
         return words;
 
@@ -40,9 +40,15 @@ public class WordsController {
         return wordsList;*/
     }
 
+    private static XStream createXStream() {
+        XStream xStream = new XStream();
+        xStream.alias("word", Word.class);
+        return xStream;
+    }
+
     public static void saveWords(List<Word> words) throws IOException {
         if (words != null) {
-            XStream xStream = new XStream();
+            XStream xStream = createXStream();
             String xml = xStream.toXML(words);
             System.out.println(xml);
             File file = new File(wordsFilePath);
