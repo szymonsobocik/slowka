@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 /*
  * Created by JFormDesigner on Sun Jan 15 09:22:06 CET 2012
  */
@@ -15,14 +16,25 @@ import java.awt.event.ActionListener;
  */
 public class MainFrame extends JFrame {
 
-    public static void main(String[] args) {
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setVisible(true);
+    public static void main(String[] args) throws IOException {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                MainFrame mainFrame = null;
+                try {
+                    mainFrame = new MainFrame();
+                    mainFrame.setVisible(true);
+                } catch (IOException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
+            }
+        });
+
     }
 
-    public MainFrame() {
+    public MainFrame() throws IOException {
         initComponents();
-        java.util.List<Word> words = WordsController.wczytajSlowka();
+        java.util.List<Word> words = WordsController.loadWords();
         ((WordsTableModel) table1.getModel()).setWords(words);
     }
 
@@ -59,7 +71,11 @@ public class MainFrame extends JFrame {
                 menuItemExport.setText("Export Words");
                 menuItemExport.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        WordsController.saveWords(((WordsTableModel) table1.getModel()).getWords());
+                        try {
+                            WordsController.saveWords(((WordsTableModel) table1.getModel()).getWords());
+                        } catch (IOException e1) {
+                            e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
                     }
                 });
                 menu1.add(menuItemExport);
