@@ -39,8 +39,8 @@ public class MainFrame extends JFrame {
     }
 
     private void initComponents() {
-        menuBar1 = new JMenuBar();
-        menu1 = new JMenu();
+        mainMenuBar = new JMenuBar();
+        menuFile = new JMenu();
         menuItemImport = new JMenuItem();
         menuItemExport = new JMenuItem();
         scrollPane1 = new JScrollPane();
@@ -51,17 +51,17 @@ public class MainFrame extends JFrame {
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
-        //======== menuBar1 ========
+        //======== mainMenuBar ========
         {
 
-            //======== menu1 ========
+            //======== menuFile ========
             {
-                menu1.setText("File");
+                menuFile.setText("File");
 
                 //---- menuItemImport ----
                 menuItemImport.setText("Import words");
                 menuItemImport.setEnabled(false);
-                menu1.add(menuItemImport);
+                menuFile.add(menuItemImport);
 
                 //---- menuItemExport ----
                 menuItemExport.setText("Export Words");
@@ -74,11 +74,26 @@ public class MainFrame extends JFrame {
                         }
                     }
                 });
-                menu1.add(menuItemExport);
+                menuFile.add(menuItemExport);
             }
-            menuBar1.add(menu1);
+
+            JMenuItem addWordMenuItem = new JMenuItem("Add word");
+            addWordMenuItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    Word word = new Word();
+                    word.setWord("new word");
+                    ((WordsTableModel) table1.getModel()).addWord(word);
+
+                }
+            });
+
+            JMenu menuWords = new JMenu("Words");
+            menuWords.add(addWordMenuItem);
+
+            mainMenuBar.add(menuFile);
+            mainMenuBar.add(menuWords);
         }
-        setJMenuBar(menuBar1);
+        setJMenuBar(mainMenuBar);
 
         //======== scrollPane1 ========
         {
@@ -89,8 +104,8 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(getOwner());
     }
 
-    private JMenuBar menuBar1;
-    private JMenu menu1;
+    private JMenuBar mainMenuBar;
+    private JMenu menuFile;
     private JMenuItem menuItemImport;
     private JMenuItem menuItemExport;
     private JScrollPane scrollPane1;

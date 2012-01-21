@@ -1,6 +1,7 @@
 import pl.ssobocik.domain.Word;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,11 @@ public class WordsTableModel extends AbstractTableModel{
     String[] columns = {"Word", "Definition", "Example", "Polish translation"};
     private List<Word> words;
 
+    public void addWord(Word word){
+        words.add(word);
+        fireTableRowsInserted(words.indexOf(word), words.indexOf(word));
+    }
+    
     public int getRowCount() {
         return words != null ? words.size() : 0;
     }
