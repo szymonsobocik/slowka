@@ -1,7 +1,8 @@
-import pl.ssobocik.domain.Word;
+package pl.ssobocik.slowka;
+
+import pl.ssobocik.slowka.domain.Word;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

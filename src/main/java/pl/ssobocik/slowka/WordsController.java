@@ -1,5 +1,7 @@
+package pl.ssobocik.slowka;
+
 import com.thoughtworks.xstream.XStream;
-import pl.ssobocik.domain.Word;
+import pl.ssobocik.slowka.domain.Word;
 
 import java.io.*;
 import java.util.List;

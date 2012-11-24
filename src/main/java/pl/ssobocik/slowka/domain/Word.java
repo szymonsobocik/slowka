@@ -1,4 +1,4 @@
-package pl.ssobocik.domain;
+package pl.ssobocik.slowka.domain;
 
 /**
  * todo szymon opis klasy

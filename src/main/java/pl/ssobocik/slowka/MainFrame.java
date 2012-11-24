@@ -1,26 +1,20 @@
-import pl.ssobocik.domain.Word;
+package pl.ssobocik.slowka;
+
+import pl.ssobocik.slowka.domain.Word;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-/*
- * Created by JFormDesigner on Sun Jan 15 09:22:06 CET 2012
- */
 
 
-
-/**
- * @author User #2
- */
 public class MainFrame extends JFrame {
 
     public static void main(String[] args) throws IOException {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-//                MainFrame mainFrame = null;
                     MainFrame mainFrame = new MainFrame();
                     mainFrame.setVisible(true);
             }
